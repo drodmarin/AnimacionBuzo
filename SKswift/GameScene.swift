@@ -9,6 +9,7 @@
 import SpriteKit
 
 var buzo = SKSpriteNode(imageNamed: "Buceador1")
+var left = false
 
 class GameScene: SKScene {
     
@@ -55,14 +56,23 @@ class GameScene: SKScene {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
+        var position:CGFloat
+        var moveGroundAction: SKAction!
+        
         for touch: AnyObject in touches {
             
-            let groundSpeed: CGFloat = 600
-            var moveGroundAction: SKAction!
-            var moveGroundForeverAction: SKAction!
-            let groundResetXCoord: CGFloat = -164
-            
-            moveGroundAction = SKAction.moveByX(-groundSpeed, y: 0, duration: 0.5)
+            if (left)
+            {
+                position = 600
+                moveGroundAction = SKAction.moveByX(position, y: 0, duration: 0.5)
+                left = false
+            }
+            else
+            {
+                position = 600
+                moveGroundAction = SKAction.moveByX(-position, y: 0, duration: 0.5)
+                left = true
+            }
             
             buzo.runAction(moveGroundAction)
             
