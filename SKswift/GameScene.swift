@@ -8,6 +8,8 @@
 
 import SpriteKit
 
+var buzo = SKSpriteNode(imageNamed: "Buceador1")
+
 class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
@@ -17,7 +19,7 @@ class GameScene: SKScene {
         backgroundColor = UIColor.cyanColor()
         
         
-        var buzo = SKSpriteNode(imageNamed: "Buceador1")
+        
         buzo.position = CGPointMake(800, 200)
         self.addChild(buzo)
         
@@ -55,8 +57,14 @@ class GameScene: SKScene {
         
         for touch: AnyObject in touches {
             
+            let groundSpeed: CGFloat = 600
+            var moveGroundAction: SKAction!
+            var moveGroundForeverAction: SKAction!
+            let groundResetXCoord: CGFloat = -164
             
+            moveGroundAction = SKAction.moveByX(-groundSpeed, y: 0, duration: 0.5)
             
+            buzo.runAction(moveGroundAction)
             
             
 //            let location = touch.locationInNode(self)
